@@ -1,4 +1,4 @@
-package account
+package identity
 
 // UpdatePasswordRequest is used to pass the request data to Storage.UpdatePassword.
 type UpdatePasswordRequest struct {
@@ -26,26 +26,26 @@ type CreateAccountRequest struct {
 }
 
 // Storage manages accounts in a persistent fashion.
-type AccountManager interface {
+type IdentityManager interface {
 
 	// Create creates a new account
-	Create(r CreateAccountRequest) (Account, error)
+	Create(r CreateAccountRequest) (Identity, error)
 
 	// Get fetches an account by its ID.
-	Get(id string) (Account, error)
+	Get(id string) (Identity, error)
 
 	// Delete deletes an account by its ID.
 	Delete(id string) error
 
 	// UpdatePassword updates an account's password.
-	UpdatePassword(id string, r UpdatePasswordRequest) (Account, error)
+	UpdatePassword(id string, r UpdatePasswordRequest) (*Identity, error)
 
 	// UpdateUsername updates an account's username.
-	UpdateUsername(id string, r UpdateUsernameRequest) (Account, error)
+	UpdateUsername(id string, r UpdateUsernameRequest) (*Identity, error)
 
 	// UpdateData updates an account's extra data (e.g. profile picture)
-	UpdateData(id string, r UpdateDataRequest) (Account, error)
+	UpdateData(id string, r UpdateDataRequest) (*Identity, error)
 
 	// Authenticate fetches an account by its username and password
-	Authenticate(username, password string) (Account, error)
+	Authenticate(username, password string) (*Identity, error)
 }

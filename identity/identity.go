@@ -1,6 +1,6 @@
-package account
+package identity
 
-type Account struct {
+type Identity struct {
 	ID       string `json:"id" gorethink:"id"`
 	Username string `json:"username" valid:"required" gorethink:"username"`
 	Password string `json:"-" gorethink:"password"`
